@@ -1,8 +1,10 @@
 import argparse
+from pathlib import Path
 
 from splitter.scanner import scan_directory
 from splitter.metadata import inspect_file, summarize_metadata
 from splitter.detection import detect_chaptered_release
+from splitter.splitter import split_mkv
 
 
 def main():
@@ -35,6 +37,22 @@ def main():
         help="MKV file to inspect."
     )
 
+    # Split command
+    split_parser = subparsers.add_parser(
+        "split",
+        help="Split a chaptered MKV into individual files."
+    )
+
+    split_parser.add_argument(
+        "file",
+        help="MKV file to split."
+    )
+
+    split_parser.add_argument(
+        "output",
+        help="Directory for the split files."
+    )
+
     args = parser.parse_args()
 
     if args.command == "scan":
@@ -50,7 +68,7 @@ def main():
             else:
                 print("No MKV files found.")
         except FileNotFoundError as e:
-            print(f"❌ {e}")
+            print(f"Error: {e}")
 
     elif args.command == "inspect":
         metadata = inspect_file(args.file)
@@ -64,6 +82,21 @@ def main():
         print(f"Estimated Episodes       : {detection.estimated_episodes}")
         print(f"Confidence               : {detection.confidence}")
         print(f"Reason                   : {detection.reason}")
+
+    elif args.command == "split":
+        try:
+            files = split_mkv(
+                Path(args.file),
+                Path(args.output),
+            )
+
+            print(f"\nCreated {len(files)} file(s):\n")
+
+            for file in files:
+                print(f"• {file.name}")
+
+        except (FileNotFoundError, RuntimeError) as e:
+            print(f"Error: {e}")
 
     else:
         parser.print_help()
