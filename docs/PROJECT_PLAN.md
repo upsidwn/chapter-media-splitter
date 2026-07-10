@@ -15,13 +15,12 @@ Split chapter-based MKV TV season releases into Sonarr-compatible episode files.
 - Chapter detection
 - Episode estimation
 - Split chaptered MKV files into individual episode files using MKVToolNix.
+- Episode Renaming complete
 
 ---
 
 ## Planned/Next Features
 
-- Chapter detection
-- Episode renaming
 - Config file
 - Logging
 - Dry-run mode

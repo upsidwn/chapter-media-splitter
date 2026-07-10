@@ -19,6 +19,7 @@ The project was inspired by solving a real world problem in my home lab and serv
 - Detect likely chaptered TV season releases
 - Estimate episode count
 - Split chaptered MKV files into individual episode files
+- Episode Renaming complete
 
 ## Roadmap
 
@@ -26,7 +27,7 @@ The project was inspired by solving a real world problem in my home lab and serv
 - [x] Read MKV metadata
 - [x] Detect chaptered TV season releases
 - [x] Split MKVs into individual episodes
-- [ ] Rename episodes for Sonarr
+- [x] Rename episodes for Sonarr
 - [ ] Dry-run mode
 - [ ] Configuration file
 - [ ] Logging
