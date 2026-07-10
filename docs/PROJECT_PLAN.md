@@ -8,6 +8,7 @@ Split chapter-based MKV TV season releases into Sonarr-compatible episode files.
 
 ## Current Features
 
+- Episode splitting
 - Recursive MKV scanning
 - Metadata inspection
 - Runtime formatting
@@ -19,7 +20,6 @@ Split chapter-based MKV TV season releases into Sonarr-compatible episode files.
 
 - Split chaptered MKV files into individual episode files using MKVToolNix.
 - Chapter detection
-- Episode splitting
 - Episode renaming
 - Config file
 - Logging
@@ -42,7 +42,7 @@ metadata.py
     Reads metadata via mkvmerge
 
 splitter.py
-    Will split MKVs
+    Splits MKVs using MKVToolNix
 
 renamer.py
     Will rename episodes

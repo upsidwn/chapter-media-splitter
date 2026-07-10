@@ -18,14 +18,14 @@ The project was inspired by solving a real world problem in my home lab and serv
 - Display formatted media information
 - Detect likely chaptered TV season releases
 - Estimate episode count
+- Split chaptered MKV files into individual episode files
 
-## Roadmap
 ## Roadmap
 
 - [x] Scan directories for MKV files
 - [x] Read MKV metadata
 - [x] Detect chaptered TV season releases
-- [ ] Split MKVs into individual episodes
+- [x] Split MKVs into individual episodes
 - [ ] Rename episodes for Sonarr
 - [ ] Dry-run mode
 - [ ] Configuration file
@@ -49,7 +49,23 @@ The project was inspired by solving a real world problem in my home lab and serv
 
 ## Usage
 
-*(add this later.)*
+Scan a directory:
+
+```bash
+python -m splitter.cli scan /path/to/media
+```
+
+Inspect an MKV:
+
+```bash
+python -m splitter.cli inspect /path/to/file.mkv
+```
+
+Split an MKV:
+
+```bash
+python -m splitter.cli split /path/to/file.mkv output/
+```
 
 ## Example
 
