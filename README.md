@@ -20,8 +20,8 @@ The project was inspired by solving a real world problem in my home lab and serv
 
 ## Roadmap
 
-- [ ] Scan directories for MKV files
-- [ ] Read chapter metadata
+- [x] Scan directories for MKV files
+- [x] Read chapter metadata
 - [ ] Split MKVs automatically
 - [ ] Rename episodes
 - [ ] Configuration file support
@@ -42,15 +42,15 @@ The project was inspired by solving a real world problem in my home lab and serv
 
 ## Installation
 
-*(We'll add this later.)*
+*(add this later.)*
 
 ## Usage
 
-*(We'll add this later.)*
+*(add this later.)*
 
 ## Example
 
-*(We'll add this later.)*
+*(add this later.)*
 
 ## License
 
