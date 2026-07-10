@@ -1,9 +1,9 @@
 import argparse
-import json
 
 from splitter.scanner import scan_directory
-from splitter.metadata import inspect_file
 from splitter.metadata import inspect_file, summarize_metadata
+from splitter.detection import detect_chaptered_release
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -38,11 +38,32 @@ def main():
     args = parser.parse_args()
 
     if args.command == "scan":
-        scan_directory(args.directory)
+        try:
+            mkv_files = scan_directory(args.directory)
+            if mkv_files:
+                print(f"\nFound {len(mkv_files)} MKV file(s):\n")
+                for file in mkv_files:
+                    size_mb = file.stat().st_size / (1024 * 1024)
+                    print(f"• {file.name}")
+                    print(f"  Path : {file.parent}")
+                    print(f"  Size : {size_mb:.1f} MB\n")
+            else:
+                print("No MKV files found.")
+        except FileNotFoundError as e:
+            print(f"❌ {e}")
 
     elif args.command == "inspect":
         metadata = inspect_file(args.file)
+        detection = detect_chaptered_release(metadata)
+
         print(summarize_metadata(metadata))
+
+        print("\nAnalysis")
+        print("--------")
+        print(f"Likely Chaptered Release : {detection.is_chaptered}")
+        print(f"Estimated Episodes       : {detection.estimated_episodes}")
+        print(f"Confidence               : {detection.confidence}")
+        print(f"Reason                   : {detection.reason}")
 
     else:
         parser.print_help()
