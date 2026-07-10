@@ -11,24 +11,27 @@ Some TV releases package an entire season into a single MKV with chapter markers
 The project was inspired by solving a real world problem in my home lab and serves as a portfolio project demonstrating Python, automation, and CLI application development.
 
 ## Features
+## Current Features
 
-- Detect chaptered MKV files
-- Split episodes using MKVToolNix
-- Generate Sonarr-compatible filenames
-- Support configurable output locations
-- Cross-platform (Linux, macOS, Windows)
+- Scan directories recursively for MKV files
+- Inspect MKV metadata
+- Display formatted media information
+- Detect likely chaptered TV season releases
+- Estimate episode count
 
+## Roadmap
 ## Roadmap
 
 - [x] Scan directories for MKV files
-- [x] Read chapter metadata
-- [ ] Split MKVs automatically
-- [ ] Rename episodes
-- [ ] Configuration file support
+- [x] Read MKV metadata
+- [x] Detect chaptered TV season releases
+- [ ] Split MKVs into individual episodes
+- [ ] Rename episodes for Sonarr
 - [ ] Dry-run mode
+- [ ] Configuration file
 - [ ] Logging
 - [ ] Unit tests
-- [ ] GitHub Actions CI
+- [ ] GitHub Actions
 
 ## Technologies
 
