@@ -8,13 +8,16 @@ Split chapter-based MKV TV season releases into Sonarr-compatible episode files.
 
 ## Current Features
 
-- Directory scanning
-- MKV metadata inspection
-
+- Recursive MKV scanning
+- Metadata inspection
+- Runtime formatting
+- Chapter detection
+- Episode estimation
 ---
 
-## Planned Features
+## Planned/Next Features
 
+- Split chaptered MKV files into individual episode files using MKVToolNix.
 - Chapter detection
 - Episode splitting
 - Episode renaming
@@ -23,6 +26,7 @@ Split chapter-based MKV TV season releases into Sonarr-compatible episode files.
 - Dry-run mode
 - Unit tests
 - GitHub Actions
+
 
 ---
 
