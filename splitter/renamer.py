@@ -44,3 +44,26 @@ def build_episode_filenames(
         )
 
     return operations
+
+
+def rename_files(
+    operations: list[RenameOperation],
+) -> list[Path]:
+    """
+    Execute a list of planned file rename operations.
+
+    Returns a list of the renamed file paths.
+    """
+
+    renamed_files: list[Path] = []
+
+    for operation in operations:
+        if operation.destination.exists():
+            raise FileExistsError(
+                f"Destination file already exists: {operation.destination}"
+            )
+
+        operation.source.rename(operation.destination)
+        renamed_files.append(operation.destination)
+
+    return renamed_files

@@ -5,6 +5,10 @@ from splitter.scanner import scan_directory
 from splitter.metadata import inspect_file, summarize_metadata
 from splitter.detection import detect_chaptered_release
 from splitter.splitter import split_mkv
+from splitter.renamer import (
+    build_episode_filenames,
+    rename_files,
+)
 
 
 def main():
@@ -53,6 +57,30 @@ def main():
         help="Directory for the split files."
     )
 
+    # Rename command
+    rename_parser = subparsers.add_parser(
+        "rename",
+        help="Rename split MKV files."
+    )
+
+    rename_parser.add_argument(
+        "directory",
+        help="Directory containing split MKV files."
+    )
+
+    rename_parser.add_argument(
+        "--show-name",
+        required=True,
+        help="Show name."
+    )
+
+    rename_parser.add_argument(
+        "--season",
+        required=True,
+        type=int,
+        help="Season number."
+    )
+
     args = parser.parse_args()
 
     if args.command == "scan":
@@ -96,6 +124,36 @@ def main():
                 print(f"• {file.name}")
 
         except (FileNotFoundError, RuntimeError) as e:
+            print(f"Error: {e}")
+
+    elif args.command == "rename":
+        try:
+            directory = Path(args.directory)
+
+            files = sorted(directory.glob("*.mkv"))
+
+            if not files:
+                raise FileNotFoundError(
+                    "No MKV files found in the specified directory."
+                )
+
+            operations = build_episode_filenames(
+                files,
+                args.show_name,
+                args.season,
+            )
+
+            renamed_files = rename_files(operations)
+
+            print(f"\nRenamed {len(renamed_files)} file(s):\n")
+
+            for file in renamed_files:
+                print(f"• {file.name}")
+
+        except (
+            FileNotFoundError,
+            FileExistsError,
+        ) as e:
             print(f"Error: {e}")
 
     else:
